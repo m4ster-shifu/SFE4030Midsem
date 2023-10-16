@@ -41,19 +41,21 @@ public class NumeralTest {
     public void manyLettersInOrder() {
         assertEquals(11, new RomanNumeral().romanToInt("XI"));
         assertEquals(21, new RomanNumeral().romanToInt("XXI"));
-        // Add more tests for other combinations.
+        assertEquals(100, new RomanNumeral().romanToInt("C"));
+        assertEquals(200, new RomanNumeral().romanToInt("CC"));
     }
 
     @Test
     public void subtractiveNotation() {
         assertEquals(4, new RomanNumeral().romanToInt("IV"));
-        // Add more tests for other subtractive notations.
+        assertEquals(9, new RomanNumeral().romanToInt("IX"));
+        assertEquals(40, new RomanNumeral().romanToInt("XL"));
     }
 
     @Test
     public void withAndWithoutSubtractiveNotation() {
         assertEquals(14, new RomanNumeral().romanToInt("XIV"));
-        // Add more tests for other combinations.
+        assertEquals(99, new RomanNumeral().romanToInt("XCIX"));
     }
 
     @Test
@@ -62,7 +64,7 @@ public class NumeralTest {
             new RomanNumeral().romanToInt("Z");
             fail("Not A Valid Roman Number");
         } catch (IllegalArgumentException e) {
-            // Expected exception
+            assertEquals("Invalid Roman numeral: Z", e.getMessage());
         }
     }
 
@@ -72,7 +74,7 @@ public class NumeralTest {
             new RomanNumeral().romanToInt("XIZ");
             fail("Wrong Roman Number format Used");
         } catch (IllegalArgumentException e) {
-            // Expected exception
+            assertEquals("Invalid Roman numeral: XI", e.getMessage());
         }
     }
 
@@ -80,9 +82,9 @@ public class NumeralTest {
     public void notValid() {
         try {
             new RomanNumeral().romanToInt("VV");
-            fail("Invalid Roman Numbergi");
+            fail("Expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
-            // Expected exception
+            assertEquals("Invalid Roman numeral: VV", e.getMessage());
         }
     }
 
@@ -92,7 +94,7 @@ public class NumeralTest {
             new RomanNumeral().romanToInt(null);
             fail("Expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
-            // Expected exception
+            assertEquals("Input cannot be null or empty", e.getMessage());
         }
     }
 }
