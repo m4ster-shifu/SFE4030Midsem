@@ -80,7 +80,7 @@ public class NumeralTest {
     public void notValid() {
         try {
             new RomanNumeral().romanToInt("VV");
-            fail("Invalid Roman Number");
+            fail("Invalid Roman Numbergi");
         } catch (IllegalArgumentException e) {
             // Expected exception
         }

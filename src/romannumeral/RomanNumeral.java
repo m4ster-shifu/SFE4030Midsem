@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 // RomanNumeral.java
 package romannumeral;
 
@@ -31,16 +26,21 @@ public class RomanNumeral {
         }
 
         int convertedNumber = 0;
+        int prevNumber = 0;  // To track the previous number while iterating
 
-        for (int i = 0; i < s.length(); i++) {
+        for (int i = s.length() - 1; i >= 0; i--) {
             int currentNumber = map.getOrDefault(s.charAt(i), 0);
-            int next = (i + 1 < s.length()) ? map.getOrDefault(s.charAt(i + 1), 0) : 0;
 
-            if (currentNumber >= next) {
+            // If the current number is greater than or equal to the previous number, add it
+            if (currentNumber >= prevNumber) {
                 convertedNumber += currentNumber;
             } else {
+                // If the current number is smaller than the previous number, subtract it
                 convertedNumber -= currentNumber;
             }
+
+            // Update the previous number for the next iteration
+            prevNumber = currentNumber;
         }
 
         return convertedNumber;
@@ -50,7 +50,7 @@ public class RomanNumeral {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter a Roman numeral: ");
-        String input = scanner.nextLine().trim();
+        String input = scanner.nextLine().trim().toUpperCase();  // Convert input to uppercase
 
         RomanNumeral romanNumeral = new RomanNumeral();
 
